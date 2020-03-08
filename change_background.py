@@ -23,13 +23,13 @@ def get_url():
         return url_image
     
     except ConnectionError as error:
-        print(Fore.RED + error + Fore.RESET)
+        print(Fore.RED , error , Fore.RESET)
 
     except ConnectTimeout as error:
-        print(Fore.RED + error + Fore.RESET)
+        print(Fore.RED , error , Fore.RESET)
 
     except ConnectionResetError as error:
-        print(Fore.RED + error + Fore.RESET)
+        print(Fore.RED , error , Fore.RESET)
 
 
 def download_wallpaper(url):
@@ -52,10 +52,10 @@ def download_wallpaper(url):
             print(f"\n [{Fore.GREEN}+{Fore.WHITE}]{Fore.GREEN} Wallpaper successfully downloaded.{Fore.RESET}")
 
     except ConnectionError as error:
-        print(Fore.RED + error + Fore.RESET)
+        print(Fore.RED , error , Fore.RESET)
 
     except ConnectTimeout as error:
-        print(Fore.RED + error + Fore.RESET)
+        print(Fore.RED , error , Fore.RESET)
 
 def set_background():
     ''' Checking Desktop Environment at System '''
