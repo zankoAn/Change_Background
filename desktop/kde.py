@@ -15,8 +15,8 @@ def address(addr):
             d.currentConfigGroup = Array("Wallpaper", "jpg", "General");
             d.writeConfig("Image", "file://{0}")
         }""".format(addr)
-bus = dbus.SessionBus()
-try :    
+try:
+    bus = dbus.SessionBus()
     plasma = dbus.Interface(
         bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell'
         )
