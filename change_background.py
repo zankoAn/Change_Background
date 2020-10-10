@@ -2,10 +2,15 @@
 ' Using the daily Bing Wallpaper as Desktop background in GNU/LINUX '
 
 from requests import get, ConnectionError, ConnectTimeout
-from os import system, path, mkdir, environ
+
+from os import system, path, mkdir, environ, popen
+
 from colorama import Fore
+
 from desktop import kde
+
 from re import findall
+
 import uuid
 
 
@@ -57,12 +62,20 @@ def download_wallpaper(url):
     except ConnectTimeout as error:
         print(Fore.RED , error , Fore.RESET)
 
+        
 def set_background():
     ''' Checking Desktop Environment at System '''
 
     #checking desktop environment at system
     desktop = environ.get('XDG_CURRENT_DESKTOP')
+    wm = popen(" xprop -root _NET_SUPPORTING_WM_CHECK | grep -Po 'window id #.*\K\W.*'").read().strip()
+    wm = popen(f"xprop -id {wm}  _NET_WM_NAME | cut -d '\"' -f2 ").read().strip()
+    
+    if  "i3" in wm:
+        # set wallpaper in backgrounnd in i3 WM
 
+        system("feh --bg-fill /backdrop/screen0/monitor0/workspace0/last-image -s ~/Pictures/bing_wallpaper/wallpaper.jpg")
+        
     if desktop.lower() == "xfce":
         # set wallpaper in backgrounnd in XFCE desktop
 
@@ -119,3 +132,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

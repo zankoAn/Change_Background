@@ -20,5 +20,5 @@ try:
     plasma = dbus.Interface(
         bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell'
         )
-except dbus.DBusException as err:
+except: 
     pass
